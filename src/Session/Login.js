@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 class LoginForm extends Component {
   constructor(props) {
@@ -20,6 +21,10 @@ class LoginForm extends Component {
   handleSubmit (event) {
     console.log(this.state)
     event.preventDefault()
+    axios.post('http://localhost:4000/users/login', {
+      username: this.state.username,
+      password: this.state.password
+    }).then(res => console.log(res))
   }
 
   render() {
