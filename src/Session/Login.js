@@ -6,7 +6,8 @@ class LoginForm extends Component {
     super(props)
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      loggedIn: false
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -24,7 +25,11 @@ class LoginForm extends Component {
     axios.post('http://localhost:4000/users/login', {
       username: this.state.username,
       password: this.state.password
-    }).then(res => console.log(res))
+    }).then(res => {
+      if (res.status === 200) {
+        this.setState({ loggedIn: true })
+      }
+    })
   }
 
   render() {
