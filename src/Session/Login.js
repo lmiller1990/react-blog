@@ -16,6 +16,7 @@ class LoginForm extends Component {
 
   handleChange (event) {
     console.log(event.target.value)
+    console.log(this.props)
     this.setState({ [event.target.name]: event.target.value })
   }
 
@@ -28,6 +29,7 @@ class LoginForm extends Component {
     }).then(res => {
       if (res.status === 200) {
         this.setState({ loggedIn: true })
+        this.props.setLoggedIn()
       }
     })
   }
