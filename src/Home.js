@@ -6,8 +6,18 @@ import PostContainer from './Posts/PostContainer'
 import { Link, Route } from 'react-router-dom'
 
 class Home extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      isLoggedIn: false
+    }
+
+    this.setLoggedIn = this.setLoggedIn.bind(this)
+  }
+
   setLoggedIn () {
-    console.log('Setting!')
+    this.setState({ isLoggedIn: true })
   }
 
   render() {
@@ -17,7 +27,10 @@ class Home extends Component {
         <Link to='/projects'>Projects</Link>
         <Link to='/about'>About</Link>
         <Link to='/resume'>Resume</Link>
-        <Session setLoggedIn={this.setLoggedIn}/>
+        <Session 
+          setLoggedIn={this.setLoggedIn}
+          isLoggedIn={this.state.isLoggedIn}
+        />
 
         <hr />
 
