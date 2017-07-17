@@ -1,11 +1,16 @@
 import React from 'react'
 import MenuItem from './MenuItem'
-import Projects from './Projects'
-import PostsIndex from './PostsIndex'
 import { Link, Route } from 'react-router-dom'
 
+const menuStyle = {
+  display: 'flex',
+  justifyContent: 'space-around',
+  maxWidth: '22em',
+  margin: '0 auto'
+}
+
 const TopMenu = () => 
-  <div>
+  <div style={menuStyle}>
     <Link to='/posts'>
       <MenuItem text={'posts'} />
     </Link>
@@ -18,9 +23,6 @@ const TopMenu = () =>
     <Link to='/resume'>
       <MenuItem text={'resume'} />
     </Link>
-
-    <Route exact path='/posts' component={PostsIndex} />
-    <Route exact path='/projects' component={Projects} />
   </div>
 
 export default TopMenu

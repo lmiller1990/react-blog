@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import PostSummary from './PostSummary'
 import axios from 'axios'
 
+const indexStyle = {
+  maxWidth: '400px',
+  // margin: '0 auto'
+}
+
 class PostsIndex extends Component {
   constructor(props) {
     super(props)
@@ -19,7 +24,7 @@ class PostsIndex extends Component {
 
   render () {
     return (
-      <div>
+      <div style={indexStyle}>
         { this.state.posts.map(post => 
           <PostSummary post={post} key={post._id} />
         ) }

@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import Projects from './Projects'
+import PostsIndex from './PostsIndex'
 import TopMenu from './TopMenu'
 import Session from './Session/Session'
 import PostContainer from './Posts/PostContainer' 
@@ -29,6 +31,8 @@ class Home extends Component {
         />
         <hr />
 
+        <Route exact path='/posts' component={PostsIndex} />
+        <Route exact path='/projects' component={Projects} />
         <Route path='/posts/:_id' 
           render={(props) => 
             <PostContainer 
