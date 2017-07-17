@@ -4,7 +4,7 @@ import PostsIndex from './PostsIndex'
 import TopMenu from './TopMenu'
 import Session from './Session/Session'
 import PostContainer from './Posts/PostContainer' 
-import { Link, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
 class Home extends Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class Home extends Component {
         <Route path='/posts/:_id' 
           render={(props) => 
             <PostContainer 
-              setLoggedIn={this.setLoggedIn} 
+              isLoggedIn={this.state.isLoggedIn}
               {...props} 
             /> 
           }/>
