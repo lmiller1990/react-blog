@@ -1,24 +1,32 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
-import {Editor, EditorState, ContentState} from 'draft-js'
+import {EditorState, ContentState} from 'draft-js'
+import EditablePostTitle from './Editor/EditablePostTitle'
+import EditablePostBody from './Editor/EditablePostBody'
 
 class PostContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      editorState: EditorState.createEmpty()
+      contentEditorState: EditorState.createEmpty(),
+      titleEditorState: EditorState.createEmpty(),
     }
 
-    this.onChange = (editorState) => this.setState({editorState})
+    this.onContentChange = (contentEditorState) => 
+      this.setState({contentEditorState})
+    this.onTitleChange = (titleEditorState) => 
+      this.setState({titleEditorState})
   }
 
   saveChanges () {
-    const content = this.state.editorState.getCurrentContent().getPlainText()
+    const title = this.state.titleEditorState.getCurrentContent().getPlainText()
+    const content = this.state.contentEditorState.getCurrentContent().getPlainText()
     const { _id } = this.props.match.params
 
     axios.post(`http://localhost:4000/posts/${_id}`, {
-      content: content
+      title: title, 
+      content: content 
     })
     .then(response => console.log(response))
     .catch(err => console.log(err))
@@ -28,18 +36,35 @@ class PostContainer extends Component {
   componentDidMount () {
     const { _id } = this.props.match.params
     axios(`http://localhost:4000/posts/${_id}`)
-      .then(res => 
-      this.setState({
-        editorState: EditorState.createWithContent(
-        ContentState.createFromText(res.data.content)
-      )}))
+    .then(res => 
+    this.setState({
+      titleEditorState: EditorState.createWithContent(
+        ContentState.createFromText(res.data.title)
+      ),
+      contentEditorState: EditorState.createWithContent(
+        ContentState.createFromText(res.data.content),
+      )
+    }))
   }
 
   render() {
+    const { isLoggedIn } = this.props
+    const saveButton = isLoggedIn 
+      ? <button onClick={() => this.saveChanges()}>Save</button>
+      : null
     return (
       <div>
-        <button onClick={() => this.saveChanges()}>Save</button>
-        <Editor onChange={this.onChange} editorState={this.state.editorState} />
+        {saveButton}
+        <EditablePostTitle 
+          change={this.onTitleChange} 
+          editorState={this.state.titleEditorState} 
+          loggedIn={isLoggedIn}
+        />
+        <EditablePostBody
+          change={this.onContentChange} 
+          editorState={this.state.contentEditorState} 
+          loggedIn={isLoggedIn}
+        />
       </div>
     )
   }

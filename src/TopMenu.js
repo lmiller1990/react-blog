@@ -1,6 +1,6 @@
 import React from 'react'
 import MenuItem from './MenuItem'
-import { Link, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const menuStyle = {
   display: 'flex',

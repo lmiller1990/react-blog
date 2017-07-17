@@ -5,7 +5,7 @@ import { Link, Route } from 'react-router-dom'
 const Session = ({setLoggedIn, isLoggedIn}) => {
   if (isLoggedIn) {
     return (
-      <div>Hi</div>
+      <div></div>
     )
   } else {
     return (
