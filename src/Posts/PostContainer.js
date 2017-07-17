@@ -30,10 +30,10 @@ class PostContainer extends Component {
     })
     .then(response => console.log(response))
     .catch(err => console.log(err))
-    
   }
 
   componentDidMount () {
+    console.log('Post conatiner mounted')
     const { _id } = this.props.match.params
     axios(`http://localhost:4000/posts/${_id}`)
     .then(res => 

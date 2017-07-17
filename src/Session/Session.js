@@ -1,5 +1,4 @@
 import React from 'react'
-import Login from './Login'
 import { Link, Route } from 'react-router-dom'
 
 const Session = ({setLoggedIn, isLoggedIn}) => {
@@ -9,14 +8,11 @@ const Session = ({setLoggedIn, isLoggedIn}) => {
     )
   } else {
     return (
-      <div>
+      <span className="my span">
+        <Link to='/posts/new'>New Post</Link>
         <Link to='/login'>Login</Link>
-        <Route exact path='/login' 
-          render={(props) => 
-            (<Login setLoggedIn={setLoggedIn} {...props}
-          />)} 
-        />
-      </div>
+
+      </span>
     )
   }
 }

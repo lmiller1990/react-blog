@@ -3,8 +3,10 @@ import Projects from './Projects'
 import PostsIndex from './PostsIndex'
 import TopMenu from './TopMenu'
 import Session from './Session/Session'
+import Login from './Session/Login'
+import NewPostContainer from './Posts/NewPostContainer'
 import PostContainer from './Posts/PostContainer' 
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 class Home extends Component {
   constructor(props) {
@@ -25,21 +27,31 @@ class Home extends Component {
     return (
       <div>
         <TopMenu />
+        <hr />
+
+        <Switch>
+          <Route exact path='/posts/new' component={NewPostContainer} />
+          <Route exact path='/posts/:_id' 
+            render={(props) => 
+              <PostContainer 
+                isLoggedIn={this.state.isLoggedIn}
+                {...props} 
+              /> 
+            }
+          />
+        </Switch>
+
+        <Route exact path='/login' 
+          render={(props) => 
+            (<Login setLoggedIn={this.setLoggedIn} {...props}
+          />)} 
+        />
+        <Route exact path='/posts' component={PostsIndex} />
+        <Route exact path='/projects' component={Projects} />
         <Session 
           setLoggedIn={this.setLoggedIn}
           isLoggedIn={this.state.isLoggedIn}
         />
-        <hr />
-
-        <Route exact path='/posts' component={PostsIndex} />
-        <Route exact path='/projects' component={Projects} />
-        <Route path='/posts/:_id' 
-          render={(props) => 
-            <PostContainer 
-              isLoggedIn={this.state.isLoggedIn}
-              {...props} 
-            /> 
-          }/>
       </div>
     )
   }

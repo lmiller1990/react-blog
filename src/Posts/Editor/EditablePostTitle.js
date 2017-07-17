@@ -13,7 +13,6 @@ const EditablePostTitle = ({change, loggedIn, editorState}) =>
       onChange={change} 
       editorState={editorState} 
       readOnly={loggedIn ? false : true}
-      style={titleStyle}
     />
   </div>
 
