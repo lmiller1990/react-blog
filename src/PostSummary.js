@@ -5,29 +5,34 @@ import PostTitle from './Posts/PostTitle'
 import PostIntro from './Posts/PostIntro'
 import Tags from './Posts/Tags'
 
-const postStyle = {
-  border: '1px dotted grey',
-  background: WHITE,
-  marginTop: '0.75em',
-  padding: '0.5em'
-}
-
 class PostSummary extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      postStyle: {
+        background: WHITE,
+        marginTop: '0.75em',
+        padding: '0.5em'
+      }
+    }
+    console.log(this.state.postStyle)
+  }
+
   render() {
     const { post } = this.props
     return (
-      <Link to={`/posts/${post._id}`}>
-        <div style={postStyle}>
-          <PostTitle 
-            title={post.title} 
-            createdAt={post.createdAt}
-          />
+        <div style={this.state.postStyle}>
+          <Link to={`/posts/${post._id}`}>
+            <PostTitle 
+              title={post.title} 
+              createdAt={post.createdAt}
+            />
+          </Link>
           <PostIntro
             sentence={post.content.split('.')[0]}
           />
-          <Tags tags={[ { _id: 1, name: 'JS' }, { _id: 2, name: 'Vuex' } ]} />
+          <Tags tags={[ { _id: 1, name: 'Tags' }, { _id: 2, name: 'More tags' } ]} />
         </div>
-      </Link>
     )
   } 
 }

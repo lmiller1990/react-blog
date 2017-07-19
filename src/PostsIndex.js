@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const indexStyle = {
   maxWidth: '400px',
-  // margin: '0 auto'
+  margin: '0 auto'
 }
 
 class PostsIndex extends Component {
