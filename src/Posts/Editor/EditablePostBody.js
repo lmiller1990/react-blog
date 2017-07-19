@@ -6,7 +6,7 @@ const EditablePostBody = ({change, loggedIn, editorState}) =>
   <Editor 
     onChange={change} 
     editorState={editorState} 
-    readOnly={loggedIn ? false : true}
+    readOnly={!loggedIn ? false : true}
   />
 
 EditablePostBody.propTypes = {

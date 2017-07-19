@@ -19,6 +19,18 @@ class PostContainer extends Component {
       this.setState({titleEditorState})
   }
 
+  deletePost () {
+    const { _id } = this.props.match.params
+
+    axios.delete('http://localhost:4000/posts/delete', {
+      params: {
+        _id: _id
+      }
+    })
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+  }
+
   saveChanges () {
     const title = this.state.titleEditorState.getCurrentContent().getPlainText()
     const content = this.state.contentEditorState.getCurrentContent().getPlainText()
@@ -49,11 +61,11 @@ class PostContainer extends Component {
 
   render() {
     const { isLoggedIn } = this.props
-    const saveButton = isLoggedIn 
-      ? <button onClick={() => this.saveChanges()}>Save</button>
-      : null
+    const saveButton = <button onClick={() => this.saveChanges()}>Save</button>
+     
     return (
       <div>
+        <button onClick={() => this.deletePost()}>Delete</button>
         {saveButton}
         <EditablePostTitle 
           change={this.onTitleChange} 
