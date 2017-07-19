@@ -3,7 +3,7 @@ import Home from './Home'
 import { LIGHT_GREY } from './Colors'
 
 const postsStyle = {
-  maxWidth: '700px',
+  maxWidth: '900px',
   margin: '0 auto',
 }
 
