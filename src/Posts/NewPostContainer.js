@@ -23,11 +23,11 @@ class PostContainer extends Component {
 
   saveChanges () {
     const title = this.state.titleEditorState.getCurrentContent().getPlainText()
-    //const content = this.state.contentEditorState.getCurrentContent().getPlainText()
+    const content = this.state.contentEditorState.getCurrentContent().getPlainText()
 
     axios.post(`http://localhost:4000/posts/new`, {
       title: title, 
-      //content: content 
+      content: content 
     })
     .then(response => console.log(response))
     .catch(err => console.log(err))
