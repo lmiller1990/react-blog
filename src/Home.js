@@ -8,6 +8,11 @@ import NewPostContainer from './Posts/NewPostContainer'
 import PostContainer from './Posts/PostContainer' 
 import { Route, Switch } from 'react-router-dom'
 
+const bodyStyle = {
+  maxWidth: '900px',
+  margin: '0 auto'
+}
+
 class Home extends Component {
   constructor(props) {
     super(props)
@@ -27,31 +32,31 @@ class Home extends Component {
     return (
       <div>
         <TopMenu />
-        <hr />
+          <Switch>
+            <Route exact path='/posts/new' component={NewPostContainer} />
+            <Route exact path='/posts/:_id' 
+              render={(props) => 
+                <PostContainer 
+                  isLoggedIn={this.state.isLoggedIn}
+                  {...props} 
+                /> 
+              }
+            />
+          </Switch>
 
-        <Switch>
-          <Route exact path='/posts/new' component={NewPostContainer} />
-          <Route exact path='/posts/:_id' 
+        <div style={bodyStyle}>
+          <Route exact path='/login' 
             render={(props) => 
-              <PostContainer 
-                isLoggedIn={this.state.isLoggedIn}
-                {...props} 
-              /> 
-            }
+              (<Login setLoggedIn={this.setLoggedIn} {...props}
+            />)} 
           />
-        </Switch>
-
-        <Route exact path='/login' 
-          render={(props) => 
-            (<Login setLoggedIn={this.setLoggedIn} {...props}
-          />)} 
-        />
-        <Route exact path='/posts' component={PostsIndex} />
-        <Route exact path='/projects' component={Projects} />
-        <Session 
-          setLoggedIn={this.setLoggedIn}
-          isLoggedIn={this.state.isLoggedIn}
-        />
+          <Route exact path='/posts' component={PostsIndex} />
+          <Route exact path='/projects' component={Projects} />
+          <Session 
+            setLoggedIn={this.setLoggedIn}
+            isLoggedIn={this.state.isLoggedIn}
+          />
+        </div>
       </div>
     )
   }

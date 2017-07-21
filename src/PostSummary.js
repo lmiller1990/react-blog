@@ -10,15 +10,20 @@ const borderWidth = '1px'
 const marginWidth = '4px'
 const paddingWidth = '20px'
 
-const titlePadding = {
+const titleStyle = {
+  fontSize: '1.4em',
   marginBottom: '1.2em'
+}
+
+const introStyle = {
+  fontWeight: '100'
 }
 
 const postStyle = {
   background: WHITE,
   padding: paddingWidth,
   border: `${borderWidth} solid rgb(200, 201, 211)`,
-  margin: `${marginWidth} 0 0 ${marginWidth}`
+  height: '250px'
 }
 
 const dateStyle = {
@@ -34,7 +39,7 @@ class PostSummary extends Component {
   render() {
     const { post } = this.props
     return (
-      <div style={postStyle}>
+      <div className={"post-summary"} style={postStyle}>
         <PostDate 
           style={dateStyle}
           createdAt={post.createdAt} />
@@ -42,12 +47,13 @@ class PostSummary extends Component {
         <Link to={`/posts/${post._id}`} 
           style={{ textDecoration: 'none' }}>
           <PostTitle 
-            padding={titlePadding}
+            style={titleStyle}
             title={post.title} 
             createdAt={post.createdAt}
           />
         </Link>
         <PostIntro
+          style={introStyle}
           sentence={post.content.split('.')[0]}
         />
       </div>

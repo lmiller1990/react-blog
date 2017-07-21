@@ -3,10 +3,8 @@ import MenuItem from './MenuItem'
 import { Link } from 'react-router-dom'
 
 const menuStyle = {
-  display: 'flex',
-  justifyContent: 'space-around',
-  maxWidth: '22em',
-  margin: '0 auto'
+  height: '3em',
+  backgroundColor: 'grey',
 }
 
 const TopMenu = () => 

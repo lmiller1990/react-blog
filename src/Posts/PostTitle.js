@@ -1,11 +1,8 @@
 import React from 'react'
 
-const titleStyle = {
-  fontSize: '1.4em'
-}
 
-const PostTitle = ({title, padding}) => 
-  <div style={{...padding, ...titleStyle}}>
+const PostTitle = ({style, title}) => 
+  <div style={style}>
     {title}
   </div>
 
