@@ -6,6 +6,7 @@ import { TOP_MENU_PADDING } from './Constants'
 
 const menuStyle = {
   height: TOP_MENU_PADDING + 'em',
+  zIndex: 5,
   position: 'fixed',
   width: '100%',
   display: 'flex',

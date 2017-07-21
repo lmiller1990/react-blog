@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { WHITE, DARK_GREY } from './Colors'
+import { WHITE, DARK_GREY, MID_GREY } from './Colors'
 import PostTitle from './Posts/PostTitle'
 import PostIntro from './Posts/PostIntro'
 import PostDate from './Posts/PostDate'
@@ -11,11 +11,7 @@ const paddingWidth = '20px'
 
 const titleStyle = {
   fontSize: '1.4em',
-  marginBottom: '1.2em'
-}
-
-const introStyle = {
-  fontWeight: '100'
+  marginBottom: '3em'
 }
 
 const postStyle = {
@@ -25,9 +21,14 @@ const postStyle = {
   height: '250px',
 }
 
+const linkStyle = {
+  textDecoration: 'none',
+  color: DARK_GREY,
+}
+
 const dateStyle = {
   marginBottom: '1.2em',
-  color: DARK_GREY
+  color: MID_GREY,
 }
 
 class PostSummary extends Component {
@@ -40,7 +41,7 @@ class PostSummary extends Component {
           createdAt={post.createdAt} />
 
         <Link to={`/posts/${post._id}`} 
-          style={{ textDecoration: 'none' }}>
+          style={linkStyle}>
           <PostTitle 
             style={titleStyle}
             title={post.title} 
@@ -48,7 +49,7 @@ class PostSummary extends Component {
           />
         </Link>
         <PostIntro
-          style={introStyle}
+          style={{color: MID_GREY}}
           sentence={post.content.split('.')[0]}
         />
       </div>

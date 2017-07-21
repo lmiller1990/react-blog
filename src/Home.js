@@ -32,7 +32,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div style={{marginTop: '-1px'}}>
+      <div>
         <TopMenu />
 
         <div className='main-body' style={bodyStyle}>
@@ -47,19 +47,19 @@ class Home extends Component {
             setLoggedIn={this.setLoggedIn}
             isLoggedIn={this.state.isLoggedIn}
           />
-        </div>
        
-        <Switch>
-          <Route exact path='/posts/new' component={NewPostContainer} />
-          <Route exact path='/posts/:_id' 
-            render={(props) => 
-              <PostContainer 
-                isLoggedIn={this.state.isLoggedIn}
-                {...props} 
-              /> 
-            }
-          />
-        </Switch>
+          <Switch>
+            <Route exact path='/posts/new' component={NewPostContainer} />
+            <Route exact path='/posts/:_id' 
+              render={(props) => 
+                <PostContainer 
+                  isLoggedIn={this.state.isLoggedIn}
+                  {...props} 
+                /> 
+              }
+            />
+          </Switch>
+        </div>
       
       </div>
     )

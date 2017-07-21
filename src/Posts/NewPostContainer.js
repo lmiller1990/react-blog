@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import {EditorState, Editor} from 'draft-js'
+import {EditorState, Editor, ContentState} from 'draft-js'
 
 const titleStyle = {
   textAlign: 'center',
@@ -10,8 +10,12 @@ class PostContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      contentEditorState: EditorState.createEmpty(),
-      titleEditorState: EditorState.createEmpty(),
+      contentEditorState: EditorState.createWithContent(
+        ContentState.createFromText('Enter post...')
+      ),
+      titleEditorState: EditorState.createWithContent(
+        ContentState.createFromText('Enter title...')
+      )
     }
 
     this.onContentChange = (contentEditorState) => 
@@ -28,8 +32,8 @@ class PostContainer extends Component {
       title: title, 
       content: content 
     })
-    .then(response => console.log(response))
-    .catch(err => console.log(err))
+      .then(response => console.log(response))
+      .catch(err => console.log(err))
   }
 
   render() {
@@ -39,13 +43,11 @@ class PostContainer extends Component {
           <Editor 
             onChange={this.onTitleChange} 
             editorState={this.state.titleEditorState} 
-            placeholder={'Enter post title...'}
           />
         </div>
         <Editor 
           onChange={this.onContentChange} 
           editorState={this.state.contentEditorState} 
-          placeholder={'Enter post content...'}
         />
         <button onClick={() => this.saveChanges()}>Create</button>
       </div>

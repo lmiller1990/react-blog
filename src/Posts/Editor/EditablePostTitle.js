@@ -4,7 +4,7 @@ import {Editor} from 'draft-js'
 
 const titleStyle = {
   textAlign: 'center',
-  marginBottom: '1em'
+  marginBottom: '3em',
 }
 
 const EditablePostTitle = ({change, loggedIn, editorState}) =>
