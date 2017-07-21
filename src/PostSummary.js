@@ -4,10 +4,9 @@ import { WHITE, DARK_GREY } from './Colors'
 import PostTitle from './Posts/PostTitle'
 import PostIntro from './Posts/PostIntro'
 import PostDate from './Posts/PostDate'
-import Tags from './Posts/Tags'
+// import Tags from './Posts/Tags'
 
 const borderWidth = '1px'
-const marginWidth = '4px'
 const paddingWidth = '20px'
 
 const titleStyle = {
@@ -23,7 +22,7 @@ const postStyle = {
   background: WHITE,
   padding: paddingWidth,
   border: `${borderWidth} solid rgb(200, 201, 211)`,
-  height: '250px'
+  height: '250px',
 }
 
 const dateStyle = {
@@ -32,10 +31,6 @@ const dateStyle = {
 }
 
 class PostSummary extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     const { post } = this.props
     return (

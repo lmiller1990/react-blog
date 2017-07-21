@@ -1,8 +1,9 @@
 import React from 'react'
 
 const itemStyle = {
-  textTransform: 'uppercase',
-  display: 'inline-block'
+  textTransform: 'capitalize',
+  paddingLeft: '2em',
+  color: 'white'
 }
 
 const MenuItem = ({text}) => 

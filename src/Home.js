@@ -7,10 +7,12 @@ import Login from './Session/Login'
 import NewPostContainer from './Posts/NewPostContainer'
 import PostContainer from './Posts/PostContainer' 
 import { Route, Switch } from 'react-router-dom'
+import { TOP_MENU_PADDING } from './Constants'
 
 const bodyStyle = {
   maxWidth: '900px',
-  margin: '0 auto'
+  margin: '0 auto',
+  paddingTop: parseFloat(TOP_MENU_PADDING) + parseFloat(1) + 'em'
 }
 
 class Home extends Component {
@@ -30,21 +32,10 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{marginTop: '-1px'}}>
         <TopMenu />
-          <Switch>
-            <Route exact path='/posts/new' component={NewPostContainer} />
-            <Route exact path='/posts/:_id' 
-              render={(props) => 
-                <PostContainer 
-                  isLoggedIn={this.state.isLoggedIn}
-                  {...props} 
-                /> 
-              }
-            />
-          </Switch>
 
-        <div style={bodyStyle}>
+        <div className='main-body' style={bodyStyle}>
           <Route exact path='/login' 
             render={(props) => 
               (<Login setLoggedIn={this.setLoggedIn} {...props}
@@ -57,6 +48,19 @@ class Home extends Component {
             isLoggedIn={this.state.isLoggedIn}
           />
         </div>
+       
+        <Switch>
+          <Route exact path='/posts/new' component={NewPostContainer} />
+          <Route exact path='/posts/:_id' 
+            render={(props) => 
+              <PostContainer 
+                isLoggedIn={this.state.isLoggedIn}
+                {...props} 
+              /> 
+            }
+          />
+        </Switch>
+      
       </div>
     )
   }

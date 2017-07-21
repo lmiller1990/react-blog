@@ -3,8 +3,6 @@ import PostSummary from './PostSummary'
 import axios from 'axios'
 
 const indexStyle = {
-  maxWidth: '100%',
-  margin: '0 auto',
   gridGap: '2px',
   display: 'grid',
   gridTemplateColumns: '33.33% 33.33% 33.33%',

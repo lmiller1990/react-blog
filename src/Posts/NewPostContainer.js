@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import axios from 'axios'
-import {EditorState, Editor, ContentState} from 'draft-js'
+import {EditorState, Editor} from 'draft-js'
 
 const titleStyle = {
   textAlign: 'center',
