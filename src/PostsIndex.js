@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import PostSummary from './PostSummary'
 import axios from 'axios'
+import PostSummary from './PostSummary'
+import { BLOG_API } from './Constants'
 
 const indexStyle = {
   gridGap: '2px',
@@ -17,7 +18,7 @@ class PostsIndex extends Component {
   }
 
   componentDidMount () {
-    axios('http://localhost:4000/posts')
+    axios(`${BLOG_API}posts`)
       .then(response => {
         this.setState({ posts: response.data })
       })

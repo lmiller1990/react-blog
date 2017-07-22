@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
+import { BLOG_API } from '../Constants'
 import {EditorState, ContentState} from 'draft-js'
 import EditablePostTitle from './Editor/EditablePostTitle'
 import EditablePostBody from './Editor/EditablePostBody'
@@ -22,7 +23,7 @@ class PostContainer extends Component {
   deletePost () {
     const { _id } = this.props.match.params
 
-    axios.delete('http://localhost:4000/posts/delete', {
+    axios.delete(`${BLOG_API}posts/delete`, {
       params: {
         _id: _id
       }
@@ -36,7 +37,7 @@ class PostContainer extends Component {
     const content = this.state.contentEditorState.getCurrentContent().getPlainText()
     const { _id } = this.props.match.params
 
-    axios.post(`http://localhost:4000/posts/${_id}`, {
+    axios.post(`${BLOG_API}posts/${_id}`, {
       title: title, 
       content: content 
     })
@@ -45,9 +46,8 @@ class PostContainer extends Component {
   }
 
   componentDidMount () {
-    console.log('Post conatiner mounted')
     const { _id } = this.props.match.params
-    axios(`http://localhost:4000/posts/${_id}`)
+    axios(`${BLOG_API}posts/${_id}`)
     .then(res => 
     this.setState({
       titleEditorState: EditorState.createWithContent(

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import {EditorState, Editor, ContentState} from 'draft-js'
+import { BLOG_API } from '../Constants'
 
 const titleStyle = {
   textAlign: 'center',
@@ -28,7 +29,7 @@ class PostContainer extends Component {
     const title = this.state.titleEditorState.getCurrentContent().getPlainText()
     const content = this.state.contentEditorState.getCurrentContent().getPlainText()
 
-    axios.post(`http://localhost:4000/posts/new`, {
+    axios.post(`${BLOG_API}/posts/new`, {
       title: title, 
       content: content 
     })
