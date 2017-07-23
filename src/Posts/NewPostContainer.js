@@ -29,7 +29,7 @@ class PostContainer extends Component {
     const title = this.state.titleEditorState.getCurrentContent().getPlainText()
     const content = this.state.contentEditorState.getCurrentContent().getPlainText()
 
-    axios.post(`${BLOG_API}/posts/new`, {
+    axios.post(`${BLOG_API}posts/new`, {
       title: title, 
       content: content 
     })

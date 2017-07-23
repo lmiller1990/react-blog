@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { WHITE, DARK_GREY, MID_GREY } from './Colors'
+import { LARGE_TEXT_SIZE } from './Constants'
 import PostTitle from './Posts/PostTitle'
 import PostIntro from './Posts/PostIntro'
 import PostDate from './Posts/PostDate'
@@ -10,7 +11,7 @@ const borderWidth = '1px'
 const paddingWidth = '20px'
 
 const titleStyle = {
-  fontSize: '1.4em',
+  fontSize: LARGE_TEXT_SIZE,
   marginBottom: '3em'
 }
 

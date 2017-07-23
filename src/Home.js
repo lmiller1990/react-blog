@@ -12,7 +12,8 @@ import { TOP_MENU_PADDING } from './Constants'
 const bodyStyle = {
   maxWidth: '900px',
   margin: '0 auto',
-  paddingTop: parseFloat(TOP_MENU_PADDING) + parseFloat(1) + 'em'
+  paddingTop: parseFloat(TOP_MENU_PADDING) + parseFloat(1) + 'em',
+  paddingBottom: '5em'
 }
 
 class Home extends Component {

@@ -12,12 +12,24 @@ class PostContainer extends Component {
     this.state = {
       contentEditorState: EditorState.createEmpty(),
       titleEditorState: EditorState.createEmpty(),
+      canSaveAndDelete: false,
+      clicks: 0
     }
 
     this.onContentChange = (contentEditorState) => 
       this.setState({contentEditorState})
     this.onTitleChange = (titleEditorState) => 
       this.setState({titleEditorState})
+    this.titleClicked = this.titleClicked.bind(this)
+  }
+
+  titleClicked () {
+    let newClicks = this.state.clicks + 1
+    this.setState({clicks: newClicks})
+
+    if (newClicks > 5) {
+      this.setState({canSaveAndDelete: true})
+    }
   }
 
   deletePost () {
@@ -61,21 +73,26 @@ class PostContainer extends Component {
 
   render() {
     const { isLoggedIn } = this.props
-    const saveButton = <button onClick={() => this.saveChanges()}>Save</button>
+    const saveAndDeleteButtons = this.state.canSaveAndDelete === true 
+      ? <div>
+          <button onClick={() => this.saveChanges()}>Save</button>
+          <button onClick={() => this.deletePost()}>Delete</button>
+        </div>
+      : null
      
     return (
       <div>
-        <button onClick={() => this.deletePost()}>Delete</button>
-        {saveButton}
+        {saveAndDeleteButtons}
         <EditablePostTitle 
+          clicked={this.titleClicked}
           change={this.onTitleChange} 
           editorState={this.state.titleEditorState} 
-          loggedIn={isLoggedIn}
+          isReadOnly={!this.state.canSaveAndDelete}
         />
         <EditablePostBody
           change={this.onContentChange} 
           editorState={this.state.contentEditorState} 
-          loggedIn={isLoggedIn}
+          isReadOnly={!this.state.canSaveAndDelete}
         />
       </div>
     )

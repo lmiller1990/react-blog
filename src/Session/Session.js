@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Session = ({setLoggedIn, isLoggedIn}) => {
-  if (1 === 4) {
+  if (1 === 1) {
     return (
       <div></div>
     )

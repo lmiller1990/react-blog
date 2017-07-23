@@ -7,19 +7,21 @@ const titleStyle = {
   marginBottom: '3em',
 }
 
-const EditablePostTitle = ({change, loggedIn, editorState}) =>
-  <div style={titleStyle}>
+const EditablePostTitle = ({change, clicked, isReadOnly, editorState}) =>
+  <div 
+    onClick={() => clicked()}
+    style={titleStyle}>
     <Editor 
       onChange={change} 
       editorState={editorState} 
-      readOnly={!loggedIn ? false : true}
+      readOnly={isReadOnly ? true : false}
     />
   </div>
 
 EditablePostTitle.propTypes = {
   change: PropTypes.func.isRequired,
   editorState: PropTypes.object.isRequired,
-  loggedIn: PropTypes.bool.isRequired
+  isReadOnly: PropTypes.bool.isRequired
 }
 
 export default EditablePostTitle

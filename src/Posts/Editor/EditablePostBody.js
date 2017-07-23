@@ -2,17 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {Editor} from 'draft-js'
 
-const EditablePostBody = ({change, loggedIn, editorState}) =>
+const EditablePostBody = ({change, isReadOnly, editorState}) =>
   <Editor 
     onChange={change} 
     editorState={editorState} 
-    readOnly={!loggedIn ? false : true}
+    readOnly={isReadOnly ? true : false}
   />
 
 EditablePostBody.propTypes = {
   change: PropTypes.func.isRequired,
   editorState: PropTypes.object.isRequired,
-  loggedIn: PropTypes.bool.isRequired
+  isReadOnly: PropTypes.bool.isRequired
 }
 
 export default EditablePostBody
